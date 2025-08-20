@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1096</width>
-    <height>818</height>
+    <width>1128</width>
+    <height>739</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,24 @@
    <widget class="QQuickWidget" name="quickWidget">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>180</y>
-      <width>781</width>
-      <height>541</height>
+      <x>20</x>
+      <y>20</y>
+      <width>1061</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="resizeMode">
      <enum>QQuickWidget::ResizeMode::SizeRootObjectToView</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>1061</width>
+      <height>281</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -33,7 +43,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1096</width>
+     <width>1128</width>
      <height>20</height>
     </rect>
    </property>
