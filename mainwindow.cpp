@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     renderWindow->AddRenderer(renderer);
 
     auto sphereSource = vtkSmartPointer<vtkSphereSource>::New();
-    sphereSource->SetRadius(0.5);
+    sphereSource->SetRadius(1.5);
     sphereSource->Update();
 
     auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
@@ -42,11 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
     auto actor = vtkSmartPointer<vtkActor>::New();
     actor->SetMapper(mapper);
 
-    renderer->SetBackground(0.2, 0.2, 0.2);
+    renderer->SetBackground(0.5, 0.5, 0.5);
     renderer->AddActor(actor);
     renderer->ResetCamera();
 
-    renderer->Render();
 }
 
 MainWindow::~MainWindow()
