@@ -22,6 +22,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-	vtkSmartPointer<vtkGenericOpenGLRenderWindow> renderWindow;
+	vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
 };
 #endif // MAINWINDOW_H

@@ -10,45 +10,44 @@
 #include <vtkActor.h>
 #include <vtkRenderer.h>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget* parent)
+	: QMainWindow(parent)
+	, ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
-    auto vtkWidget = new QVTKOpenGLNativeWidget(ui->widget);
+	ui->setupUi(this);
+	ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
+	auto vtkWidget = new QVTKOpenGLNativeWidget(ui->widget);
 
 	auto layer = ui->widget->layout();
-    if (!layer) 
-    {
-        layer = new QVBoxLayout(ui->widget);
-        ui->widget->setLayout(layer);
+	if (!layer)
+	{
+		layer = new QVBoxLayout(ui->widget);
+		ui->widget->setLayout(layer);
 	}
-    layer->addWidget(vtkWidget);
+	layer->addWidget(vtkWidget);
 
-	renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
-    vtkWidget->setRenderWindow(renderWindow);
+	m_renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
+	vtkWidget->setRenderWindow(m_renderWindow);
 
-    auto renderer = vtkSmartPointer<vtkRenderer>::New();
-    renderWindow->AddRenderer(renderer);
+	auto renderer = vtkSmartPointer<vtkRenderer>::New();
+	m_renderWindow->AddRenderer(renderer);
 
-    auto sphereSource = vtkSmartPointer<vtkSphereSource>::New();
-    sphereSource->SetRadius(1.5);
-    sphereSource->Update();
+	auto sphereSource = vtkSmartPointer<vtkSphereSource>::New();
+	sphereSource->SetRadius(1.5);
 
-    auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-    mapper->SetInputConnection(sphereSource->GetOutputPort());
+	auto mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+	mapper->SetInputConnection(sphereSource->GetOutputPort());
 
-    auto actor = vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
+	auto actor = vtkSmartPointer<vtkActor>::New();
+	actor->SetMapper(mapper);
 
-    renderer->SetBackground(0.5, 0.5, 0.5);
-    renderer->AddActor(actor);
-    renderer->ResetCamera();
+	renderer->SetBackground(0.5, 0.5, 0.5);
+	renderer->AddActor(actor);
+	renderer->ResetCamera();
 
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+	delete ui;
 }
