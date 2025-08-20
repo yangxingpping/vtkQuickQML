@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QVBoxLayout>
+
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <vtkSphereSource.h>
@@ -15,7 +17,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
     auto vtkWidget = new QVTKOpenGLNativeWidget(ui->widget);
-    //setCentralWidget(ui->widget);
+
+	auto layer = ui->widget->layout();
+    if (!layer) 
+    {
+        layer = new QVBoxLayout(ui->widget);
+        ui->widget->setLayout(layer);
+	}
+    layer->addWidget(vtkWidget);
 
     auto renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
     vtkWidget->setRenderWindow(renderWindow);
