@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
 	}
     layer->addWidget(vtkWidget);
 
-    auto renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
+	renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
     vtkWidget->setRenderWindow(renderWindow);
 
     auto renderer = vtkSmartPointer<vtkRenderer>::New();
@@ -42,8 +42,11 @@ MainWindow::MainWindow(QWidget *parent)
     auto actor = vtkSmartPointer<vtkActor>::New();
     actor->SetMapper(mapper);
 
+    renderer->SetBackground(0.2, 0.2, 0.2);
     renderer->AddActor(actor);
     renderer->ResetCamera();
+
+    renderer->Render();
 }
 
 MainWindow::~MainWindow()
