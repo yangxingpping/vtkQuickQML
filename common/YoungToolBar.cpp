@@ -51,7 +51,7 @@ void YoungToolBar::onMoveEnterToolbar(const QPoint& pos, const QSize& size, int 
         _impl->hidePopup();
     }
     auto curMenu1 = _confs->toolBarMenu(index);
-    string url = "qrc:/images/toolBar1.qml";
+    string url = "qrc:/qml/toolBar1.qml";
     _confs->toolBarMenu1(curMenu1);
     _impl->ShowPopup(url, 0, pos.x(), pos.y(), 100, h);
     _confs->toolbarIndex(index);
@@ -68,7 +68,7 @@ void YoungToolBar::onMoveEnterToolsubMenu1(const QPoint& pos, int sub)
         _confs->toolBarMenu2(subs);
         auto curMenu2 = _confs->toolBarMenu(_confs->toolbarIndex(), sub);
         _confs->toolbarMenu1Index(sub);
-        _impl->ShowPopup("qrc:/images/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
+        _impl->ShowPopup("qrc:/qml/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
     }
     else
     {
@@ -84,7 +84,7 @@ void YoungToolBar::onMoveEnterToolsubMenu2(const QPoint& pos, int sub)
         auto subs = _confs->toolBarMenu(_confs->toolbarIndex(), sub);
         _confs->toolBarMenu2(subs);
         _confs->toolbarMenu2Index(sub);
-        _impl->ShowPopup("qrc:/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
+        _impl->ShowPopup("qrc:/qml/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
     }
     else
     {
@@ -159,7 +159,7 @@ void YoungToolBar::onClickToolbar(const QPoint& pos, const QSize& size, int inde
         assert(0);
         return;
     }
-    string url = "qrc:/images/toolBar1.qml";
+    string url = "qrc:/qml/toolBar1.qml";
     if (_confs->toolbarIndex() !=index)
     {
         _impl->hidePopup(0);
