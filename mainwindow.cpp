@@ -62,5 +62,14 @@ void MainWindow::initVtk()
 
 	renderer->SetBackground(0.9, 0.9, 0.9);
 
+	_initCube();
+
 	renderer->ResetCamera();
+
+	
+}
+
+void MainWindow::_initCube()
+{
+
 }
