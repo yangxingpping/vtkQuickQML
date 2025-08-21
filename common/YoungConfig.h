@@ -13,7 +13,7 @@ using std::map;
 using std::string;
 
 class YoungConfig : public QObject {
-	Q_OBJECT;
+	Q_OBJECT
 	//QML_SINGLETON
 	QML_ELEMENT;
 	Q_PROPERTY_AUTO(int, toolbarIndex);

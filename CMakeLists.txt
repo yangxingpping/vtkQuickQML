@@ -15,27 +15,28 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets QuickWidgets)
 find_package(VTK REQUIRED)
 find_package(KF6TextEditor REQUIRED)
 
+include_directories(common)
+
+aux_source_directory(./common CommonCPP)
+
+
 set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        YoungConfig.cpp
-        YoungConfig.h
-        YoungNotify.cpp
-        YoungNotify.h
-        YoungToolBar.cpp
-        YoungToolBar.h
-        PopupWindowManager.cpp
-        PopupWindowManager.h
-        ExternalPopupWindow.cpp
-        ExternalPopupWindow.h
+        ./common/YoungConfig.h
+        ./common/YoungNotify.h
+        ./common/YoungToolBar.h
+        ./common/YoungMacro.h
+        ./common/PopupWindowManager.h
+        ./common/ExternalPopupWindow.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MaterialQt
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+        ${PROJECT_SOURCES} ${CommonCPP}
         qrc.qrc
         qml/demo.qml
         qml/toolBarBase.qml

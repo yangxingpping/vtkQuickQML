@@ -20,7 +20,7 @@ Rectangle {
         anchors.right: rtRight.left
         spacing: 1
         Repeater{
-            model: ["hello", "world", "next", "last"] //youngConf.toolBar
+            model: youngConf.toolBar
             YoungButton{
                 id: rt0
                 text: modelData

@@ -2,11 +2,11 @@
 
 #define Q_PROPERTY_AUTO_P(TYPE, M)                                                                 \
     Q_PROPERTY(TYPE M MEMBER _##M NOTIFY M##Changed)                                               \
-    signals: void M##Changed();                                                                    \
+    Q_SIGNAL void M##Changed();                                                                    \
 public:                                                                                            \
     void M(TYPE in_##M) {                                                                          \
         _##M = in_##M;                                                                             \
-        emit M##Changed();                                                                       \
+        Q_EMIT M##Changed();                                                                       \
     }                                                                                              \
     TYPE M() {                                                                                     \
         return _##M;                                                                               \
@@ -17,11 +17,11 @@ private:                                                                        
 
 #define Q_PROPERTY_AUTO(TYPE, M)                                                                   \
     Q_PROPERTY(TYPE M MEMBER _##M NOTIFY M##Changed)                                               \
-    signals: void M##Changed();                                                                    \
+    Q_SIGNAL void M##Changed();                                                                    \
 public:                                                                                            \
     void M(const TYPE &in_##M) {                                                                   \
         _##M = in_##M;                                                                             \
-        emit M##Changed();                                                                       \
+        Q_EMIT M##Changed();                                                                       \
     }                                                                                              \
     TYPE M() {                                                                                     \
         return _##M;                                                                               \
