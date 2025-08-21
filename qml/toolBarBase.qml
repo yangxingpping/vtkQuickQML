@@ -10,7 +10,7 @@ Rectangle {
         width: 0
         height: 0
     }
-    color: mbFaker.background.color //Material.background
+    color: "red" // mbFaker.background.color //Material.background
     Material.theme: youngConf.darkMode ? Material.Dark : Material.Light
     Row{
         id: row
@@ -21,7 +21,7 @@ Rectangle {
         spacing: 1
         Repeater{
             model: youngConf.toolBar
-            YoungButton{
+            Button{
                 id: rt0
                 text: modelData
                 height: root.height
