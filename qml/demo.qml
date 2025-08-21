@@ -1,11 +1,11 @@
 import QtQuick
-import QtQuick.Controls.Universal
+import QtQuick.Controls.Material
 
 Rectangle {
     width: 400
     height: 400
-    //Material.theme: Material.Dark
-    //color: Material.backgroundColor
+    Material.theme: youngConf.darkMode ? Material.Dark : Material.Light
+    color: Material.backgroundColor
     Button{
         text: "hello"
     }

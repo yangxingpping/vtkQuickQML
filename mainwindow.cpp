@@ -47,6 +47,10 @@ void MainWindow::initQtWidgets()
 	ui->quickWidget_ToolBar->rootContext()->setContextProperty("youngConf", m_config);
 	ui->quickWidget_ToolBar->rootContext()->setContextProperty("youngNotify", _notify);
 
+	ui->quickWidget->rootContext()->setContextProperty("popupHelper", this);
+	ui->quickWidget->rootContext()->setContextProperty("youngConf", m_config);
+	ui->quickWidget->rootContext()->setContextProperty("youngNotify", _notify);
+	ui->quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
 
 	ui->quickWidget->setSource(QUrl("qrc:/qml/demo.qml"));
 	ui->quickWidget_ToolBar->setSource(QUrl("qrc:/qml/toolBarBase.qml"));
