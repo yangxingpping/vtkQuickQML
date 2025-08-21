@@ -16,6 +16,7 @@
 #include <vtkTextActor.h>
 #include <vtkTextProperty.h>
 #include <vtkNamedColors.h>
+#include <ktexteditor/Editor>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -72,6 +73,21 @@ void MainWindow::initVtk()
 	renderer->ResetCamera();
 
 	
+}
+
+void MainWindow::initKde()
+{
+	auto layer = ui->widget_2->layout();
+	if (!layer)
+	{
+		layer = new QVBoxLayout(ui->widget_2);
+		ui->widget_2->setLayout(layer);
+	}
+	auto editor = KTextEditor::Editor::instance();
+	assert(editor);
+	m_doc = editor->createDocument(this);
+	m_docView = m_doc->createView(this);
+	layer->addWidget(m_docView);
 }
 
 void MainWindow::_initAxes(vtkSmartPointer<vtkRenderer> renderer)

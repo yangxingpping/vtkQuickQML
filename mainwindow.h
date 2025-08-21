@@ -7,6 +7,9 @@
 #include <vtkSmartPointer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
 
+#include "ktexteditor/Document"
+#include "ktexteditor/View"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -25,6 +28,7 @@ private:
 
     void initQtWidgets();
     void initVtk();
+    void initKde();
 
     void _initAxes(vtkSmartPointer<vtkRenderer> render);
 
@@ -32,5 +36,8 @@ private:
     Ui::MainWindow *ui;
 	vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
     QVTKOpenGLNativeWidget* m_vtkNativeWidget{ nullptr };
+
+    KTextEditor::View* m_docView{ nullptr };
+	KTextEditor::Document* m_doc{ nullptr };
 };
 #endif // MAINWINDOW_H
