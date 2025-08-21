@@ -29,6 +29,20 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+signals:
+    void topPopClosed();
+    void maskClosed();
+    void topPopOpened();
+    void maskOpened();
+public slots:
+    void showPopup(const QPoint& pos, const QSize& size, int index);
+    void hoveEnter(const QPoint& pos, const QSize& size, int index);
+protected:
+    void changeEvent(QEvent* event) override;
+    void moveEvent(QMoveEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
+    bool eventFilter(QObject* obj, QEvent* event) override;
+
 private:
 
     void initQtWidgets();

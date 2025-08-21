@@ -146,3 +146,76 @@ void MainWindow::_initAxes(vtkSmartPointer<vtkRenderer> renderer)
 	axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1);
 	renderer->AddActor(axes);
 }
+
+void MainWindow::showPopup(const QPoint& pos, const QSize& size, int index)
+{
+	qWarning() << "show pop at index=" << index;
+	m_popup->setSource(QUrl("qrc:/images/next.qml"));
+	assert(m_popup->status() == QQuickView::Ready);
+	m_popup->showAtPosition(pos, size);
+	emit topPopOpened();
+}
+
+void MainWindow::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::ActivationChange)
+	{
+		qDebug() << "active window changed";
+		auto w2 = QGuiApplication::focusWindow();
+		if (this->isActiveWindow())
+		{
+			qDebug() << "Application gained focus";
+		}
+		else if (_tb->IsActiveWindow(w2))
+		{
+			qDebug() << "Popup gained focus";
+		}
+		else
+		{
+			qDebug() << "Application lost focus";
+			_tb->onCloseToolbar();
+		}
+	}
+	QMainWindow::changeEvent(event);
+
+}
+
+void MainWindow::moveEvent(QMoveEvent* event)
+{
+	QMainWindow::moveEvent(event);
+
+}
+
+void MainWindow::resizeEvent(QResizeEvent* event)
+{
+	QMainWindow::resizeEvent(event);
+}
+
+bool MainWindow::eventFilter(QObject* obj, QEvent* event)
+{
+	if (event->type() == QEvent::MouseButtonPress)
+	{
+		qDebug() << "main window mouse clicked";
+		_tb->onCloseToolbar();
+	}
+	else if (event->type() == QEvent::NonClientAreaMouseButtonPress)
+	{
+		qDebug() << "main window non-client area mouse clicked";
+		_tb->onCloseToolbar();
+	}
+	return QMainWindow::eventFilter(obj, event);
+}
+
+void MainWindow::hoveEnter(const QPoint& pos, const QSize& size, int index)
+{
+	qDebug() << "hover to pop index=" << index;
+	if (m_popup->isVisible())
+	{
+		qDebug() << "start show pop up";
+
+		m_popup->setSource(QUrl("qrc:/images/next.qml"));
+		m_popup->setResizeMode(QQuickView::SizeViewToRootObject);
+		m_popup->showAtPosition(pos, size);
+		emit topPopOpened();
+	}
+}
