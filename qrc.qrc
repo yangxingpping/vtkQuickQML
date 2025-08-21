@@ -5,5 +5,7 @@
         <file>qml/YoungButton.qml</file>
         <file>qml/toolBar1.qml</file>
         <file>qml/toolBar2.qml</file>
+        <file>qml/ToolBarLevel1.qml</file>
+        <file>qml/ToolBarLevel2.qml</file>
     </qresource>
 </RCC>

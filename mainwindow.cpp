@@ -51,11 +51,28 @@ void MainWindow::initQtWidgets()
 	ui->quickWidget->setSource(QUrl("qrc:/qml/demo.qml"));
 	ui->quickWidget_ToolBar->setSource(QUrl("qrc:/qml/toolBarBase.qml"));
 	auto errs = ui->quickWidget_ToolBar->errors();
-	for (auto err: errs)
-	{
-		auto e = err.toString();
-		int i{ 0 };
-	}
+	assert(errs.empty());
+	_toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeRootObjectToView, "qrc:/qml/ToolBarLevel1.qml" });
+	_toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeRootObjectToView, "qrc:/qml/ToolBarLevel2.qml" });
+
+	_gObjs.push_back(ViewContext{ "youngConf", m_config });
+	_gObjs.push_back(ViewContext{ "youngNotify", _notify });
+
+	_tb = new YoungToolBar(ui->quickWidget_ToolBar, _gObjs);
+
+	QObject::connect(_tb, &YoungToolBar::clickToolbarMenu, [this](int index, int s1, int s2)
+		{
+			/*if (index == 3 && s1 == 0)
+			{
+				auto cmd = m_cmdContainer.findCommand(CommandLeftSidebarWidgetToggle::Name);
+				cmd->execute();
+				int j = 1;
+			}*/
+		});
+
+	_tb->Init(m_config);
+	QObject::connect(_notify, &YoungNotify::clickToolbar, _tb, &YoungToolBar::onClickToolbar);
+	QObject::connect(_notify, &YoungNotify::hoveEnterToolbar, _tb, &YoungToolBar::onMoveEnterToolbar);
 	
 
 	m_vtkNativeWidget = new QVTKOpenGLNativeWidget(ui->widget);

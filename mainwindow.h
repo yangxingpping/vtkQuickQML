@@ -12,6 +12,8 @@
 
 #include "YoungConfig.h"
 #include "YoungNotify.h"
+#include "ExternalPopupWindow.h"
+#include "YoungToolBar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -42,7 +44,13 @@ private:
 
     KTextEditor::View* m_docView{ nullptr };
 	KTextEditor::Document* m_doc{ nullptr };
+
+
     YoungConfig* m_config{ nullptr };
 	YoungNotify* _notify{ nullptr };
+    ExternalPopupWindow* m_popup = nullptr;
+    vector<ViewContext> _gObjs;
+    vector<PopWindowConfig> _toolBarConfigs;
+    YoungToolBar* _tb{ nullptr };
 };
 #endif // MAINWINDOW_H
