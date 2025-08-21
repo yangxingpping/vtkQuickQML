@@ -18,13 +18,7 @@ find_package(KF6TextEditor REQUIRED)
 include_directories(common)
 
 aux_source_directory(./common CommonCPP)
-
-
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+set(CommonHeader
         ./common/YoungConfig.h
         ./common/YoungNotify.h
         ./common/YoungToolBar.h
@@ -33,13 +27,25 @@ set(PROJECT_SOURCES
         ./common/ExternalPopupWindow.h
 )
 
+
+
+
+set(PROJECT_SOURCES
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+)
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MaterialQt
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES} ${CommonCPP}
+        ${PROJECT_SOURCES} ${CommonCPP} ${CommonHeader}
         qrc.qrc
         qml/demo.qml
         qml/toolBarBase.qml
+        qml/toolBar1.qml
+        qml/toolBar2.qml
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MaterialQt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
