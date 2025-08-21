@@ -10,6 +10,9 @@
 #include "ktexteditor/Document"
 #include "ktexteditor/View"
 
+#include "YoungConfig.h"
+#include "YoungNotify.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -39,5 +42,7 @@ private:
 
     KTextEditor::View* m_docView{ nullptr };
 	KTextEditor::Document* m_doc{ nullptr };
+    YoungConfig* m_config{ nullptr };
+	YoungNotify* _notify{ nullptr };
 };
 #endif // MAINWINDOW_H

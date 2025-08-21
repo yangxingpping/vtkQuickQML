@@ -2,7 +2,7 @@
 #include "./ui_mainwindow.h"
 
 #include <QVBoxLayout>
-#include <QPushButton>
+#include <QQmlContext>
 
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -38,8 +38,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::initQtWidgets()
 {
-	ui->quickWidget_ToolBar->setFixedHeight(40);
-	ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
+
+	//for ui
+	m_config = new YoungConfig(this);
+	_notify = new YoungNotify(this);
+	ui->quickWidget_ToolBar->setFixedHeight(45);
+	ui->quickWidget_ToolBar->rootContext()->setContextProperty("popupHelper", this);
+	ui->quickWidget_ToolBar->rootContext()->setContextProperty("youngConf", m_config);
+	ui->quickWidget_ToolBar->rootContext()->setContextProperty("youngNotify", _notify);
+
+	ui->quickWidget->setSource(QUrl("qrc:/qml/demo.qml"));
+	ui->quickWidget_ToolBar->setSource(QUrl("qrc:/qml/toolBarBase.qml"));
+	auto errs = ui->quickWidget_ToolBar->errors();
+	for (auto err: errs)
+	{
+		auto e = err.toString();
+		int i{ 0 };
+	}
+	
+
 	m_vtkNativeWidget = new QVTKOpenGLNativeWidget(ui->widget);
 
 	auto layer = ui->widget->layout();

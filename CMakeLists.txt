@@ -20,6 +20,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        YoungConfig.cpp
+        YoungConfig.h
+        YoungNotify.cpp
+        YoungNotify.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -27,7 +31,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         qrc.qrc
-        demo.qml
+        qml/demo.qml
+        qml/toolBarBase.qml
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET MaterialQt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

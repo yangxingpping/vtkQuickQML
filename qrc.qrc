@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>demo.qml</file>
+        <file>qml/demo.qml</file>
+        <file>qml/toolBarBase.qml</file>
+        <file>qml/YoungButton.qml</file>
     </qresource>
 </RCC>
