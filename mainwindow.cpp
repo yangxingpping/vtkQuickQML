@@ -62,9 +62,9 @@ void MainWindow::initVtk()
 	actor->SetMapper(mapper);
 	renderer->AddActor(actor);
 
-	renderer->SetBackground(0.9, 0.9, 0.9);
-
 	_initCube(renderer);
+
+	renderer->SetBackground(0.9, 0.9, 0.9);
 
 	renderer->ResetCamera();
 
@@ -74,6 +74,7 @@ void MainWindow::initVtk()
 void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 {
 	auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
+	cubeSource->SetCenter(5.0, 0.0, 0.0);
 	cubeSource->SetXLength(1.0);
 	cubeSource->SetYLength(1.0);
 	cubeSource->SetZLength(1.0);
