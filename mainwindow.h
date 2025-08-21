@@ -26,7 +26,7 @@ private:
     void initQtWidgets();
     void initVtk();
 
-    void _initCube();
+    void _initCube(vtkSmartPointer<vtkRenderer> render);
 
 
     Ui::MainWindow *ui;

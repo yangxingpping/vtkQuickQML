@@ -11,6 +11,8 @@
 #include <vtkRenderer.h>
 #include <vtkCubeSource.h>
 #include <vtkProperty.h>
+#include <vtkAxesActor.h>
+#include <vtkOrientationMarkerWidget.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -62,14 +64,34 @@ void MainWindow::initVtk()
 
 	renderer->SetBackground(0.9, 0.9, 0.9);
 
-	_initCube();
+	_initCube(renderer);
 
 	renderer->ResetCamera();
 
 	
 }
 
-void MainWindow::_initCube()
+void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 {
+	auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
+	cubeSource->SetXLength(1.0);
+	cubeSource->SetYLength(1.0);
+	cubeSource->SetZLength(1.0);
 
+	auto cubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+	cubeMapper->SetInputConnection(cubeSource->GetOutputPort());
+
+	auto cubeActor = vtkSmartPointer<vtkActor>::New();
+	cubeActor->SetMapper(cubeMapper);
+	cubeActor->GetProperty()->SetColor(0.9, 0.9, 0.9);
+
+	renderer->AddActor(cubeActor);
+
+	auto axes = vtkSmartPointer<vtkAxesActor>::New();
+	auto orientationWidget = vtkSmartPointer<vtkOrientationMarkerWidget>::New();
+	orientationWidget->SetOrientationMarker(axes);
+	orientationWidget->SetInteractor(m_vtkNativeWidget->interactor());
+	orientationWidget->SetViewport(0.0, 0.0, 0.2, 0.2);
+	orientationWidget->SetEnabled(1);
+	orientationWidget->InteractiveOn();
 }
