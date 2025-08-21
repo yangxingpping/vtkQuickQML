@@ -92,24 +92,6 @@ void MainWindow::initKde()
 
 void MainWindow::_initAxes(vtkSmartPointer<vtkRenderer> renderer)
 {
-	/*auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
-	cubeSource->SetCenter(5.0, 0.0, 0.0);
-	cubeSource->SetXLength(1.0);
-	cubeSource->SetYLength(1.0);
-	cubeSource->SetZLength(1.0);
-
-
-	auto cubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-	cubeMapper->SetInputConnection(cubeSource->GetOutputPort());
-
-	auto colors = vtkSmartPointer<vtkNamedColors>::New();
-	auto cubeActor = vtkSmartPointer<vtkActor>::New();
-	cubeActor->SetMapper(cubeMapper);
-	cubeActor->GetProperty()->SetColor(0.9, 0.9, 0.9);
-	cubeActor->GetProperty()->SetColor(colors->GetColor3d("LightGray").GetData());
-
-	renderer->AddActor(cubeActor);*/
-
 	auto axes = vtkSmartPointer<vtkAxesActor>::New();
 	axes->SetTotalLength(5.0, 5.0, 5.0);
 	axes->SetShaftTypeToCylinder();     
