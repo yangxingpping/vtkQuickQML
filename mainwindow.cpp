@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget* parent)
 	
 	initQtWidgets();
 	initVtk();
+	initKde();
 }
 
 MainWindow::~MainWindow()
