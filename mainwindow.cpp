@@ -15,6 +15,7 @@
 #include <vtkCaptionActor2D.h>
 #include <vtkTextActor.h>
 #include <vtkTextProperty.h>
+#include <vtkNamedColors.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -81,12 +82,15 @@ void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 	cubeSource->SetYLength(1.0);
 	cubeSource->SetZLength(1.0);
 
+
 	auto cubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
 	cubeMapper->SetInputConnection(cubeSource->GetOutputPort());
 
+	auto colors = vtkSmartPointer<vtkNamedColors>::New();
 	auto cubeActor = vtkSmartPointer<vtkActor>::New();
 	cubeActor->SetMapper(cubeMapper);
 	cubeActor->GetProperty()->SetColor(0.9, 0.9, 0.9);
+	cubeActor->GetProperty()->SetColor(colors->GetColor3d("LightGray").GetData());
 
 	renderer->AddActor(cubeActor);
 
