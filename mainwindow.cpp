@@ -12,7 +12,9 @@
 #include <vtkCubeSource.h>
 #include <vtkProperty.h>
 #include <vtkAxesActor.h>
-#include <vtkOrientationMarkerWidget.h>
+#include <vtkCaptionActor2D.h>
+#include <vtkTextActor.h>
+#include <vtkTextProperty.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -92,8 +94,8 @@ void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 	axes->SetTotalLength(2.0, 2.0, 2.0);
 	axes->SetShaftTypeToCylinder();     
 	axes->SetCylinderRadius(0.02);
-	//axes->GetXAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(1, 0, 0); // X ºì
-	//axes->GetYAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 1, 0); // Y ÂÌ
-	//axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1); // Z À¶
+	axes->GetXAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(1, 0, 0);
+	axes->GetYAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 1, 0);
+	axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1);
 	renderer->AddActor(axes);
 }
