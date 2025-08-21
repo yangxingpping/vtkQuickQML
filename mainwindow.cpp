@@ -65,7 +65,7 @@ void MainWindow::initVtk()
 	actor->SetMapper(mapper);
 	renderer->AddActor(actor);
 
-	_initCube(renderer);
+	_initAxes(renderer);
 
 	renderer->SetBackground(0.9, 0.9, 0.9);
 
@@ -74,9 +74,9 @@ void MainWindow::initVtk()
 	
 }
 
-void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
+void MainWindow::_initAxes(vtkSmartPointer<vtkRenderer> renderer)
 {
-	auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
+	/*auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
 	cubeSource->SetCenter(5.0, 0.0, 0.0);
 	cubeSource->SetXLength(1.0);
 	cubeSource->SetYLength(1.0);
@@ -92,12 +92,13 @@ void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 	cubeActor->GetProperty()->SetColor(0.9, 0.9, 0.9);
 	cubeActor->GetProperty()->SetColor(colors->GetColor3d("LightGray").GetData());
 
-	renderer->AddActor(cubeActor);
+	renderer->AddActor(cubeActor);*/
 
 	auto axes = vtkSmartPointer<vtkAxesActor>::New();
 	axes->SetTotalLength(5.0, 5.0, 5.0);
 	axes->SetShaftTypeToCylinder();     
-	axes->SetCylinderRadius(0.01);
+	axes->SetCylinderRadius(0.006);
+	axes->SetConeRadius(0.1);
 	axes->GetXAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(1, 0, 0);
 	axes->GetYAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 1, 0);
 	axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1);
