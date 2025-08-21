@@ -3,5 +3,7 @@
         <file>qml/demo.qml</file>
         <file>qml/toolBarBase.qml</file>
         <file>qml/YoungButton.qml</file>
+        <file>qml/toolBar1.qml</file>
+        <file>qml/toolBar2.qml</file>
     </qresource>
 </RCC>

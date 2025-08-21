@@ -24,6 +24,12 @@ set(PROJECT_SOURCES
         YoungConfig.h
         YoungNotify.cpp
         YoungNotify.h
+        YoungToolBar.cpp
+        YoungToolBar.h
+        PopupWindowManager.cpp
+        PopupWindowManager.h
+        ExternalPopupWindow.cpp
+        ExternalPopupWindow.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
