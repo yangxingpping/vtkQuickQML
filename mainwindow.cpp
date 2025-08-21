@@ -90,9 +90,9 @@ void MainWindow::initKde()
 	assert(editor);
 	m_doc = editor->createDocument(this);
 	m_docView = m_doc->createView(ui->widget_2);
-	m_docView->setConfigValue("line-numbers", false);
+	m_docView->setConfigValue("line-numbers", true);
 	m_docView->setConfigValue("scrollbar-minimap", true);
-	
+	m_docView->setStatusBarEnabled(false);
 	layer->addWidget(m_docView);
 }
 
