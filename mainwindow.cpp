@@ -19,6 +19,7 @@
 #include <vtkNamedColors.h>
 #include <ktexteditor/Editor>
 
+
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
@@ -89,6 +90,9 @@ void MainWindow::initKde()
 	assert(editor);
 	m_doc = editor->createDocument(this);
 	m_docView = m_doc->createView(ui->widget_2);
+	m_docView->setConfigValue("line-numbers", false);
+	m_docView->setConfigValue("scrollbar-minimap", true);
+	
 	layer->addWidget(m_docView);
 }
 
