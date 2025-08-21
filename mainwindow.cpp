@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 
 #include <QVBoxLayout>
+#include <QPushButton>
 
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -86,7 +87,7 @@ void MainWindow::initKde()
 	auto editor = KTextEditor::Editor::instance();
 	assert(editor);
 	m_doc = editor->createDocument(this);
-	m_docView = m_doc->createView(this);
+	m_docView = m_doc->createView(ui->widget_2);
 	layer->addWidget(m_docView);
 }
 
