@@ -9,6 +9,8 @@
 #include <vtkPolyDataMapper.h>
 #include <vtkActor.h>
 #include <vtkRenderer.h>
+#include <vtkCubeSource.h>
+#include <vtkProperty.h>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -16,7 +18,7 @@ MainWindow::MainWindow(QWidget* parent)
 {
 	ui->setupUi(this);
 	ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
-	auto vtkWidget = new QVTKOpenGLNativeWidget(ui->widget);
+	m_vtkNativeWidget = new QVTKOpenGLNativeWidget(ui->widget);
 
 	auto layer = ui->widget->layout();
 	if (!layer)
@@ -24,13 +26,29 @@ MainWindow::MainWindow(QWidget* parent)
 		layer = new QVBoxLayout(ui->widget);
 		ui->widget->setLayout(layer);
 	}
-	layer->addWidget(vtkWidget);
+	layer->addWidget(m_vtkNativeWidget);
+
+	auto cubeSource = vtkSmartPointer<vtkCubeSource>::New();
+	cubeSource->SetXLength(1.0);
+	cubeSource->SetYLength(1.0);
+	cubeSource->SetZLength(1.0);
+
+	auto cubeMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+	cubeMapper->SetInputConnection(cubeSource->GetOutputPort());
+
+	auto cubeActor = vtkSmartPointer<vtkActor>::New();
+	cubeActor->SetMapper(cubeMapper);
+	cubeActor->GetProperty()->SetColor(0.9, 0.9, 0.9);
+
+	
 
 	m_renderWindow = vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New();
-	vtkWidget->setRenderWindow(m_renderWindow);
+	m_vtkNativeWidget->setRenderWindow(m_renderWindow);
 
 	auto renderer = vtkSmartPointer<vtkRenderer>::New();
 	m_renderWindow->AddRenderer(renderer);
+
+	renderer->AddActor(cubeActor);
 
 	auto sphereSource = vtkSmartPointer<vtkSphereSource>::New();
 	sphereSource->SetRadius(1.5);
@@ -40,9 +58,10 @@ MainWindow::MainWindow(QWidget* parent)
 
 	auto actor = vtkSmartPointer<vtkActor>::New();
 	actor->SetMapper(mapper);
-
-	renderer->SetBackground(0.5, 0.5, 0.5);
 	renderer->AddActor(actor);
+
+	renderer->SetBackground(0.9, 0.9, 0.9);
+	
 	renderer->ResetCamera();
 
 }

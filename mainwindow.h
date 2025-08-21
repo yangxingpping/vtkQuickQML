@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVTKOpenGLNativeWidget.h>
 
 #include <vtkSmartPointer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -23,5 +24,6 @@ public:
 private:
     Ui::MainWindow *ui;
 	vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
+    QVTKOpenGLNativeWidget* m_vtkNativeWidget{ nullptr };
 };
 #endif // MAINWINDOW_H
