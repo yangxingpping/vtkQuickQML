@@ -22,6 +22,11 @@ public:
     ~MainWindow();
 
 private:
+
+    void initQtWidgets();
+    void initVtk();
+
+
     Ui::MainWindow *ui;
 	vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
     QVTKOpenGLNativeWidget* m_vtkNativeWidget{ nullptr };
