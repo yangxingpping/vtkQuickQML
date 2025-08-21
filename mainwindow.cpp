@@ -89,10 +89,11 @@ void MainWindow::_initCube(vtkSmartPointer<vtkRenderer> renderer)
 	renderer->AddActor(cubeActor);
 
 	auto axes = vtkSmartPointer<vtkAxesActor>::New();
-	auto orientationWidget = vtkSmartPointer<vtkOrientationMarkerWidget>::New();
-	orientationWidget->SetOrientationMarker(axes);
-	orientationWidget->SetInteractor(m_vtkNativeWidget->interactor());
-	orientationWidget->SetViewport(0.0, 0.0, 0.2, 0.2);
-	orientationWidget->SetEnabled(1);
-	orientationWidget->InteractiveOn();
+	axes->SetTotalLength(2.0, 2.0, 2.0);
+	axes->SetShaftTypeToCylinder();     
+	axes->SetCylinderRadius(0.02);
+	//axes->GetXAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(1, 0, 0); // X ºì
+	//axes->GetYAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 1, 0); // Y ÂÌ
+	//axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1); // Z À¶
+	renderer->AddActor(axes);
 }
