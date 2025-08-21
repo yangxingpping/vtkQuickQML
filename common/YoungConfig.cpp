@@ -12,7 +12,6 @@ YoungConfig::YoungConfig(QObject *parent) : QObject(parent)
 
     _toolBarSubMenus.insert({ "0_1", {"s1", "s2", "s3", "s4"} });
 	_toolBarSubMenus.insert({ "1_1", {"s3", "s4", "s5"} });
-	_darkMode = true;
 }
 
 QStringList YoungConfig::getMenuItem(int sub, int sub2/* = -1*/)

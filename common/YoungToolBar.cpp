@@ -6,8 +6,8 @@ YoungToolBar::YoungToolBar(QQuickWidget* parent, vector<ViewContext>& ctxs)
 	assert(parent);
     _ctxs = ctxs;
 	_impl = new PopupWindowManager(parent);
-    _toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeViewToRootObject, "qrc:/qml/toolBar1.qml" });
-    _toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeViewToRootObject, "qrc:/qml/toolBar2.qml" });
+    _toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeViewToRootObject, "qrc:/toolBar1.qml" });
+    _toolBarConfigs.push_back(PopWindowConfig{ QQuickView::SizeViewToRootObject, "qrc:/toolBar2.qml" });
 }
 
 YoungToolBar::~YoungToolBar()
@@ -20,9 +20,9 @@ bool YoungToolBar::Init(YoungConfig* conf)
     assert(_impl);
     assert(conf);
     _confs = conf;
-   /* _confs->toolbarIndex(-1);
+    _confs->toolbarIndex(-1);
 	_confs->toolbarMenu1Index(-1);
-    _confs->toolbarMenu2Index(-1);*/
+    _confs->toolbarMenu2Index(-1);
     _ctxs.push_back(ViewContext{ "youngToolbar", this });
     ret = _impl->Init(_toolBarConfigs, _ctxs);
     return ret;
@@ -51,12 +51,12 @@ void YoungToolBar::onMoveEnterToolbar(const QPoint& pos, const QSize& size, int 
         _impl->hidePopup();
     }
     auto curMenu1 = _confs->toolBarMenu(index);
-    string url = "qrc:/qml/toolBar1.qml";
-    //_confs->toolBarMenu1(curMenu1);
+    string url = "qrc:/images/toolBar1.qml";
+    _confs->toolBarMenu1(curMenu1);
     _impl->ShowPopup(url, 0, pos.x(), pos.y(), 100, h);
-    /*_confs->toolbarIndex(index);
+    _confs->toolbarIndex(index);
     _confs->toolbarMenu1Index(-1);
-    _confs->toolbarMenu2Index(-1);*/
+    _confs->toolbarMenu2Index(-1);
 }
 
 void YoungToolBar::onMoveEnterToolsubMenu1(const QPoint& pos, int sub)
@@ -65,10 +65,10 @@ void YoungToolBar::onMoveEnterToolsubMenu1(const QPoint& pos, int sub)
     if (h>0)
     {
         auto subs = _confs->getMenuItem(_confs->toolbarIndex(), sub);
-        //_confs->toolBarMenu2(subs);
+        _confs->toolBarMenu2(subs);
         auto curMenu2 = _confs->toolBarMenu(_confs->toolbarIndex(), sub);
-       // _confs->toolbarMenu1Index(sub);
-        _impl->ShowPopup("qrc:/qml/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
+        _confs->toolbarMenu1Index(sub);
+        _impl->ShowPopup("qrc:/images/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
     }
     else
     {
@@ -82,9 +82,9 @@ void YoungToolBar::onMoveEnterToolsubMenu2(const QPoint& pos, int sub)
     if (h > 0)
     {
         auto subs = _confs->toolBarMenu(_confs->toolbarIndex(), sub);
-        //_confs->toolBarMenu2(subs);
-        //_confs->toolbarMenu2Index(sub);
-        _impl->ShowPopup("qrc:/qml/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
+        _confs->toolBarMenu2(subs);
+        _confs->toolbarMenu2Index(sub);
+        _impl->ShowPopup("qrc:/toolBar2.qml", 1, pos.x(), pos.y(), 100, h);
     }
     else
     {
@@ -99,9 +99,9 @@ void YoungToolBar::onCloseToolbar()
         return;
     }
 	_impl->hidePopup();
-    /*_confs->toolbarIndex(-1);
+    _confs->toolbarIndex(-1);
     _confs->toolbarMenu1Index(-1);
-	_confs->toolbarMenu2Index(-1);*/
+	_confs->toolbarMenu2Index(-1);
 	
 }
 
@@ -132,7 +132,7 @@ bool YoungToolBar::onClickSubMenu1(int sub1)
         qDebug() << "current click item index=" << sub1 << " has sub item";
         return false;
     }
-    //_confs->toolbarMenu1Index(sub1);
+    _confs->toolbarMenu1Index(sub1);
     clickToolbarMenu(_confs->toolbarIndex(), _confs->toolbarMenu1Index(), _confs->toolbarMenu2Index());
     onCloseToolbar();
     ret = true; 
@@ -145,7 +145,7 @@ bool YoungToolBar::onClickSubMenu2(int sub1)
     {
         return false;
     }
-    //_confs->toolbarMenu2Index(sub1);
+    _confs->toolbarMenu2Index(sub1);
     clickToolbarMenu(_confs->toolbarIndex(), _confs->toolbarMenu1Index(), _confs->toolbarMenu2Index());
     onCloseToolbar();
     ret = true;
@@ -169,9 +169,9 @@ void YoungToolBar::onClickToolbar(const QPoint& pos, const QSize& size, int inde
     {
         return;
 	}
-    //_confs->toolBarMenu1(curMenu1);
+    _confs->toolBarMenu1(curMenu1);
     _impl->ShowPopup(url, 0, pos.x(), pos.y(), 100, calcHeight(index));
-    /*_confs->toolbarIndex(index);
+    _confs->toolbarIndex(index);
     _confs->toolbarMenu1Index(-1);
-    _confs->toolbarMenu2Index(-1);*/
+    _confs->toolbarMenu2Index(-1);
 }
