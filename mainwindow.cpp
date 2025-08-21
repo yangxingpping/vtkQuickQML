@@ -38,6 +38,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::initQtWidgets()
 {
+	ui->quickWidget_ToolBar->setFixedHeight(40);
 	ui->quickWidget->setSource(QUrl("qrc:/demo.qml"));
 	m_vtkNativeWidget = new QVTKOpenGLNativeWidget(ui->widget);
 
@@ -47,7 +48,9 @@ void MainWindow::initQtWidgets()
 		layer = new QVBoxLayout(ui->widget);
 		ui->widget->setLayout(layer);
 	}
+	layer->setContentsMargins(0, 0, 0, 0);
 	layer->addWidget(m_vtkNativeWidget);
+	statusBar()->hide();
 }
 
 void MainWindow::initVtk()
