@@ -165,6 +165,7 @@ void MainWindow::_initTreeView()
 	root->appendRow(new QStandardItem("world"));
 	auto child1 = new QStandardItem("child1");
 	root->appendRow(child1);
+	//child1->setCheckable(true);
 	child1->appendRow(new QStandardItem("child2"));
 	child1->appendRow(new QStandardItem("child3"));
 
