@@ -52,6 +52,8 @@ private:
     void _initAxes(vtkSmartPointer<vtkRenderer> render);
 
 
+    void _initTreeView();
+
     Ui::MainWindow *ui;
 	vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
     QVTKOpenGLNativeWidget* m_vtkNativeWidget{ nullptr };

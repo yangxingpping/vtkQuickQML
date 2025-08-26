@@ -3,6 +3,8 @@
 
 #include <QVBoxLayout>
 #include <QQmlContext>
+#include <QStandardItem>
+#include <QStandardItemModel>
 
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -89,6 +91,9 @@ void MainWindow::initQtWidgets()
 	}
 	layer->setContentsMargins(0, 0, 0, 0);
 	layer->addWidget(m_vtkNativeWidget);
+
+	_initTreeView();
+
 	statusBar()->hide();
 }
 
@@ -149,6 +154,22 @@ void MainWindow::_initAxes(vtkSmartPointer<vtkRenderer> renderer)
 	axes->GetYAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 1, 0);
 	axes->GetZAxisCaptionActor2D()->GetTextActor()->GetTextProperty()->SetColor(0, 0, 1);
 	renderer->AddActor(axes);
+}
+
+void MainWindow::_initTreeView()
+{
+	QStandardItemModel* model = new QStandardItemModel(ui->treeView);
+	auto root = model->invisibleRootItem();
+	root->appendRow(new QStandardItem("hello"));
+
+	root->appendRow(new QStandardItem("world"));
+	auto child1 = new QStandardItem("child1");
+	root->appendRow(child1);
+	child1->appendRow(new QStandardItem("child2"));
+	child1->appendRow(new QStandardItem("child3"));
+
+	ui->treeView->setHeaderHidden(true);
+	ui->treeView->setModel(model);
 }
 
 void MainWindow::showPopup(const QPoint& pos, const QSize& size, int index)

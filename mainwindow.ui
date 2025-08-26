@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,8,4,4">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,8,8,4,4">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -33,7 +33,7 @@
     <item>
      <widget class="QQuickWidget" name="quickWidget_ToolBar">
       <property name="resizeMode">
-       <enum>QQuickWidget::SizeRootObjectToView</enum>
+       <enum>QQuickWidget::ResizeMode::SizeRootObjectToView</enum>
       </property>
      </widget>
     </item>
@@ -41,9 +41,12 @@
      <widget class="QWidget" name="widget" native="true"/>
     </item>
     <item>
+     <widget class="QTreeView" name="treeView"/>
+    </item>
+    <item>
      <widget class="QQuickWidget" name="quickWidget">
       <property name="resizeMode">
-       <enum>QQuickWidget::SizeViewToRootObject</enum>
+       <enum>QQuickWidget::ResizeMode::SizeViewToRootObject</enum>
       </property>
      </widget>
     </item>
@@ -58,7 +61,7 @@
      <x>0</x>
      <y>0</y>
      <width>647</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
