@@ -3,7 +3,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <qglobal.h>
 #include <kconfigskeleton.h>
 #include <QCoreApplication>
 #include <QDebug>
@@ -13,7 +12,7 @@ class Config : public KConfigSkeleton
   Q_OBJECT
   public:
 
-    Config( QObject *parent = nullptr );
+    Config( const QString & transport, const QString & folder, QObject *parent = nullptr );
     ~Config() override;
 
     /**
@@ -209,6 +208,8 @@ class Config : public KConfigSkeleton
     void itemChanged(quint64 signalFlag);
 
   protected:
+    QString mParamtransport;
+    QString mParamfolder;
 
     // General
     QString mLastSeenVersion;

@@ -29,9 +29,9 @@ MainWindow::MainWindow(QWidget* parent)
 {
 	ui->setupUi(this);
 
-	auto conf = new Config(this);
+	auto conf = new Config("first", "second", this);
 	conf->load();
-	//conf->setLastSeenVersion("hello,world");
+	conf->setLastSeenVersion("hello,world");
 	auto l1 = conf->lastSeenVersion();
 
 	conf->save();

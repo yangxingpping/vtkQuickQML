@@ -3,8 +3,10 @@
 
 #include "config.h"
 
-Config::Config( QObject *parent )
-  : KConfigSkeleton()
+Config::Config( const QString & transport, const QString & folder, QObject *parent )
+  : KConfigSkeleton( QStringLiteral( "heherc" ) )
+  , mParamtransport(transport)
+  , mParamfolder(folder)
 {
   setParent(parent);
   KConfigCompilerSignallingItem::NotifyFunction notifyFunction = static_cast<KConfigCompilerSignallingItem::NotifyFunction>(&Config::itemChanged);
