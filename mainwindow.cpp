@@ -21,13 +21,21 @@
 #include <vtkNamedColors.h>
 #include <ktexteditor/Editor>
 
+#include "config.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
 	, ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
-	
+
+	auto conf = new Config(this);
+	conf->load();
+	//conf->setLastSeenVersion("hello,world");
+	auto l1 = conf->lastSeenVersion();
+
+	conf->save();
+
 	initQtWidgets();
 	initVtk();
 	initKde();
