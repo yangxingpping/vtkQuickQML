@@ -5,15 +5,27 @@
 #include <QStyleFactory>
 #include <ktexteditor/Document>
 #include <ktexteditor/Editor>
+#include <KCrash>
+
+#include <QFile>
 
 void fakecall()
 {
 	auto instance = KTextEditor::Editor::instance();
 }
 
+
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    KCrash::initialize();
+    auto emergencySave = [](int tag) {
+        QFile f("crash_recovery.log");
+        if (f.open(QIODevice::WriteOnly))
+            f.write("App crashed, unsaved data dumped...\n");
+        };
+    KCrash::setEmergencySaveFunction(emergencySave);
     fakecall();
 	QQuickWindow::setSceneGraphBackend("opengl");
     qputenv("QSG_RHI_BACKEND", "opengl");

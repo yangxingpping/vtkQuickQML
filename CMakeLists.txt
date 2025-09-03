@@ -14,6 +14,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets QuickWidgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets QuickWidgets)
 find_package(VTK REQUIRED)
 find_package(KF6TextEditor REQUIRED)
+find_package(KF6Crash REQUIRED)
 
 include_directories(common)
 
@@ -67,7 +68,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(MaterialQt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::QuickWidgets PRIVATE ${VTK_LIBRARIES} PRIVATE KF6::TextEditor)
+target_link_libraries(MaterialQt PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::QuickWidgets PRIVATE ${VTK_LIBRARIES} PRIVATE KF6::TextEditor PRIVATE KF6::Crash)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
